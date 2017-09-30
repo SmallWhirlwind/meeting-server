@@ -1,6 +1,6 @@
 ---
 - name: build a Jenkins Service
-  hosts: test_vagrant
+  hosts: 192.168.33.10 ansible_ssh_user=vagrant ansible_ssh_pass=vagrant
   sudo: true
   remote_user: vagrant
   tasks: 
