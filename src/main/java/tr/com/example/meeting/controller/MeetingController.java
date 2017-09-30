@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tr.com.example.meeting.domain.Meeting;
 import tr.com.example.meeting.service.MeetingService;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Meeting RESTful controller for CRUD operations.
  * 
@@ -29,8 +31,9 @@ public class MeetingController {
     private MeetingService service;
 
 	@GetMapping("/meetings")
-    public ResponseEntity<List<Meeting>> getMeetings() {
+    public ResponseEntity<List<Meeting>> getMeetings(HttpServletResponse resp) {
 		List<Meeting> meetings = this.service.list();
+        resp.setHeader("Access-Control-Allow-Origin", "*");
     	return new ResponseEntity<List<Meeting>>(meetings, HttpStatus.OK);
     }
     
