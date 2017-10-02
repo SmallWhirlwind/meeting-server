@@ -33,7 +33,7 @@ public class MeetingController {
 	@GetMapping("/meetings")
     public ResponseEntity<List<Meeting>> getMeetings(HttpServletResponse resp) {
 		List<Meeting> meetings = this.service.list();
-        resp.setHeader("Access-Control-Allow-Origin", "*");
+//        resp.setHeader("Access-Control-Allow-Origin", "*");
     	return new ResponseEntity<List<Meeting>>(meetings, HttpStatus.OK);
     }
     
