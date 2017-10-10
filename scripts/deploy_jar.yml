@@ -4,10 +4,6 @@
   sudo: true
   remote_user: vagrant
   tasks:
-    - name: Delete project jar
-      command: rm /var/meeting-0.0.1-SNAPSHOT.jar
-    - name: Delete project jar
-      command: kill -9 $(lsof -i:8080)
     - name: Copy project jar
       copy:
         src: ../target/meeting-0.0.1-SNAPSHOT.jar
