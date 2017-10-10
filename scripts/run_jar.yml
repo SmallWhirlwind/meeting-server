@@ -5,4 +5,5 @@
   remote_user: vagrant
   tasks:
     - name: Run project jar
-      command: java -jar /var/meeting-0.0.1-SNAPSHOT.jar &
+      sudo: yes
+      sh: run_jar.sh

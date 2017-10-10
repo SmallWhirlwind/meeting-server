@@ -4,6 +4,9 @@
   sudo: true
   remote_user: vagrant
   tasks:
+    - name: Stop old project
+      sudo: yes
+      sh: deploy_jar.sh
     - name: Copy project jar
       copy:
         src: ../target/meeting-0.0.1-SNAPSHOT.jar
