@@ -4,5 +4,9 @@
   sudo: true
   remote_user: vagrant
   tasks:
+    - name: Copy project jar
+      copy:
+        src: ./run_jar.sh
+        dest: /var
     - name: Run project jar
-      sh: run_jar.sh
+      command: sh /var/run_jar.sh
