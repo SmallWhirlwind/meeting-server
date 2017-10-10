@@ -8,5 +8,5 @@
       copy:
         src: ./run_jar.sh
         dest: /var
-    - name: Run project jar
-      command: sh /var/run_jar.sh
+#    - name: Run project jar
+#      command: sh /var/run_jar.sh

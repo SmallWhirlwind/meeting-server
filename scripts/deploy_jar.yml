@@ -4,6 +4,14 @@
   sudo: true
   remote_user: vagrant
   tasks:
+    - name: Remove directory structure
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /var/meeting-0.0.1-SNAPSHOT.jar
+        - /var/run_jar.sh
+        - /var/deploy_jar.sh
     - name: Copy project jar
       copy:
         src: ./deploy_jar.sh
