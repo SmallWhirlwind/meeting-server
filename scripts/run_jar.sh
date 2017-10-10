@@ -1,2 +1,2 @@
 #! /bin/bash
-java -jar /var/meeting-0.0.1-SNAPSHOT.jar &
+nohup java -jar /var/meeting-0.0.1-SNAPSHOT.jar &
