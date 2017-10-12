@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tr.com.example.meeting.domain.Employee;
 import tr.com.example.meeting.service.EmployeeService;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Employee RESTful controller for CRUD operations.
  * 
@@ -29,8 +31,9 @@ public class EmployeeController {
     private EmployeeService service;
 
 	@GetMapping("/employees")
-    public ResponseEntity<List<Employee>> employee() {
+    public ResponseEntity<List<Employee>> employee(HttpServletResponse resp) {
 		List<Employee> employees = this.service.list();
+		resp.setHeader("Access-Control-Allow-Origin", "*");
     	return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
     }
     

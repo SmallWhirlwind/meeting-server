@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tr.com.example.meeting.domain.Department;
 import tr.com.example.meeting.service.DepartmentService;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Department RESTful controller for CRUD operations.
  * 
@@ -29,8 +31,9 @@ public class DepartmentController {
     private DepartmentService service;
 
 	@GetMapping("/departments")
-    public ResponseEntity<List<Department>> getDepartments() {
+    public ResponseEntity<List<Department>> getDepartments(HttpServletResponse resp) {
 		List<Department> departments = this.service.list();
+		resp.setHeader("Access-Control-Allow-Origin", "*");
     	return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
     }
     
