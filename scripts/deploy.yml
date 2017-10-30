@@ -5,7 +5,7 @@
   remote_user: vagrant
   tasks:
   - name: remove running container
-    script: ../auto/down
+    script: ../auto/down.sh
   - name: pull meeting-server image
     docker:
       name: meeting-server
