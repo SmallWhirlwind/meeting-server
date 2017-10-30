@@ -13,14 +13,15 @@ node {
         }
     }
     stage('Build Docker Images') {
-        docker.image('docker').inside {
-            sh '''docker build -t 192.168.33.80:5000/meeting_server:${BUILD_NUMBER} .
-            docker push 192.168.33.80:5000/meeting_server:${BUILD_NUMBER}'''
-        }
+        sh '''
+        docker build -t 192.168.33.80:5000/meeting_server:${BUILD_NUMBER} .
+        docker push 192.168.33.80:5000/meeting_server:${BUILD_NUMBER}'''
+
     }
     stage('Deploy To Server') {
-        docker.image('generik/ansible').inside {
-            sh '''ansible-playbook -e BUILDNUMBER=${BUILD_NUMBER} -i ./scripts/hosts ./scripts/deploy.yml'''
-        }
+        // docker.image('generik/ansible').inside {
+            sh '''cd scripts
+            sudo ansible-playbook -e BUILDNUMBER=${BUILD_NUMBER} -i hosts deploy.yml'''
+        // }
     }
 }
