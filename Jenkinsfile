@@ -2,18 +2,24 @@ node {
     stage('Download Project') {
         git 'https://github.com/SmallWhirlwind/meeting-server.git'
     }
-    stage('Run test') {
-        sh '''mvn clean test'''
+    stage('Run Test') {
+        docker.image('maven').inside {
+            sh '''mvn clean test'''
+        }
     }
     stage('Build Server') {
-        sh '''mvn clean package'''
+        docker.image('maven').inside {
+            sh '''mvn clean package'''
+        }
     }
-    stage('Deploy jar package to service') {
-        sh '''cd scripts
-        sudo ansible-playbook deploy_jar.yml'''
+    stage('Build Docker Images') {
+        docker.image('docker').inside {
+            sh '''docker build -t 192.168.33.80:5000/meeting_server:${BUILD_NUMBER} .'''
+        }
     }
-    stage('Deploy jar package to service') {
-        sh '''cd scripts
-        sudo ansible-playbook run_jar.yml'''
+    stage('Deploy To Server') {
+        docker.image('generik/ansible').inside {
+            sh '''ansible-playbook -e BUILDNUMBER=${BUILD_NUMBER} -i ./scripts/hosts ./scripts/deploy.yml'''
+        }
     }
 }

@@ -1,0 +1,15 @@
+---
+- name: build a Jenkins Service
+  hosts: test_vagrant
+  sudo: true
+  remote_user: vagrant
+  tasks:
+  - name: remove running container
+    script: ./auto/down
+  - name: pull eid-report-python3.6 image
+    docker:
+      name: meeting-server
+      image: 192.168.33.80:5000/meeting_server:{{BUILDNUMBER}}
+      pull: always
+      ports:
+      - "9000:9000"
