@@ -14,7 +14,8 @@ node {
     }
     stage('Build Docker Images') {
         docker.image('docker').inside {
-            sh '''docker build -t 192.168.33.80:5000/meeting_server:${BUILD_NUMBER} .'''
+            sh '''docker build -t 192.168.33.80:5000/meeting_server:${BUILD_NUMBER} .
+            docker push 192.168.33.80:5000/meeting_server:${BUILD_NUMBER}'''
         }
     }
     stage('Deploy To Server') {

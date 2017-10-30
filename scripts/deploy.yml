@@ -5,11 +5,11 @@
   remote_user: vagrant
   tasks:
   - name: remove running container
-    script: ./auto/down
-  - name: pull eid-report-python3.6 image
+    script: ../auto/down
+  - name: pull meeting-server image
     docker:
       name: meeting-server
       image: 192.168.33.80:5000/meeting_server:{{BUILDNUMBER}}
       pull: always
       ports:
-      - "9000:9000"
+      - "8080:8080"
