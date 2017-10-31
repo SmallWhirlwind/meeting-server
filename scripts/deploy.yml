@@ -9,4 +9,4 @@
   - name: pull meeting-server image
     docker_image:
       name: 192.168.33.80:5000/meeting_server
-      tag: {{BUILDNUMBER}}
+      tag: "{{BUILDNUMBER}}"
