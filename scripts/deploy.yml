@@ -7,5 +7,9 @@
   - name: remove running container
     script: ../auto/down.sh
   - name: pull meeting-server image
-    docker_image:
-      name: 192.168.33.80:5000/meeting_server
+    docker:
+      name: eid-summary-report
+      image: 192.168.33.80:5000/meeting_server:{{BUILDNUMBER}}
+      pull: always
+      ports:
+      - "8080:8080"
