@@ -29,6 +29,18 @@ public class DepartmentController {
 	
 	@Autowired
     private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
+    @Autowired
+    private DepartmentService service;
 
 	@GetMapping("/departments")
     public ResponseEntity<List<Department>> getDepartments(HttpServletResponse resp) {
